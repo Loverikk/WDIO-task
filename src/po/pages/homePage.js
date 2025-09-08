@@ -23,4 +23,30 @@ export class HomePage extends BasePage {
 
         return isSorted
     }
+
+    get sortDropdown() {
+        return $('[data-test="sort"]')
+    }
+
+    get productPriceArray() {
+        return $$('.col-md-9 a [data-test="product-price"]')
+    }
+
+    get lastProductCard() {
+        return $('[data-test="product-01K4N4ANR2YFTT5X1KCAM46WJ4"]')
+    }
+
+    get lastProductName() {
+        return this.lastProductCard.$('h5[data-test="product-name"]')
+    }
+
+    get lastProductPrice() {
+        return this.lastProductCard.$('span[data-test="product-price"]')
+    }
+
+    async waitForTheLastProductToRender() {
+        await this.lastProductCard.waitForDisplayed()
+        await this.lastProductName.waitForDisplayed()
+        await this.lastProductPrice.waitForDisplayed()
+    }
 }

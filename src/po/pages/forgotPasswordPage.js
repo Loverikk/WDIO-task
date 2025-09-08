@@ -16,4 +16,8 @@ export class ForgotPasswordPage extends BasePage {
     get errorBox() {
         return $('div[data-test="email-error"]')
     }
+
+    getErrorMessage() {
+        return this.errorBox.getText()
+    }
 }

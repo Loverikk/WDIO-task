@@ -33,8 +33,20 @@ export class LoginPage extends BasePage {
         return $('div.input-group button')
     }
 
+    get emailFieldType() {
+        return this.passwordField.getAttribute('type')
+    }
+
     getErrorText(element) {
         return element.getText()
+    }
+
+    async typeInEmail(email) {
+        await this.emailField.setValue(email)
+    }
+
+    async typeInPassword(password) {
+        await this.passwordField.setValue(password)
     }
 
     get forgotPaswordLink() {

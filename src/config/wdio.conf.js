@@ -21,7 +21,7 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        '../po/tests/**/*.js'
+        '../tests/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -64,8 +64,11 @@ exports.config = {
         }
     },
     {
-        browserName: 'safari',
+        browserName: 'MicrosoftEdge',
         maxInstances: 2,
+        'ms:edgeOptions': {
+            args: ['--headless', '--disable-gpu', '--window-size=1920,1080']
+        }
     }
     ],
 
@@ -116,9 +119,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: [
-        'geckodriver'
-    ],
+    // services: [],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
