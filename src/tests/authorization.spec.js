@@ -47,6 +47,7 @@ describe('Login page', async () => {
         await loginPage.typeInPassword(process.env.CORRECT_PASSWORD)
         await loginPage.loginBtn.click()
 
+        await accountPage.pageTitle.waitForDisplayed()
         const pageTitleText = await accountPage.pageTitleText
 
         await expect(browser).toHaveUrl(PAGE_PATHS.MY_ACCOUNT_FULL)
@@ -66,6 +67,7 @@ describe('Login page', async () => {
     it('Should show the error message when restoring the password without the email', async () => {
         await loginPage.forgotPaswordLink.click()
 
+        await forgotPasswordPage.setNewPasswordBtn.waitForDisplayed()
         await forgotPasswordPage.setNewPasswordBtn.click()
         await forgotPasswordPage.errorBox.waitForDisplayed()
         const errorText = await forgotPasswordPage.getErrorMessage()

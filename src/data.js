@@ -26,3 +26,7 @@ export const TYPES = {
 export const TITLES = {
     POWER_TOOLS: 'Category: Power Tools'
 }
+
+export const SORTING_OPTIONS = {
+    ASCENDING_ORDER: 'price,asc'
+}

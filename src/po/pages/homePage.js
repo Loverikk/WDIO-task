@@ -32,21 +32,30 @@ export class HomePage extends BasePage {
         return $$('.col-md-9 a [data-test="product-price"]')
     }
 
-    get lastProductCard() {
-        return $('[data-test="product-01K4N4ANR2YFTT5X1KCAM46WJ4"]')
+    sortingOption(value) {
+        return this.sortDropdown.$(`option[value="${value}"]`)
     }
 
-    get lastProductName() {
-        return this.lastProductCard.$('h5[data-test="product-name"]')
+    get sortDropdownValue() {
+        return this.sortDropdown.getValue()
     }
 
-    get lastProductPrice() {
-        return this.lastProductCard.$('span[data-test="product-price"]')
+    get sortedGoods() {
+        return $('div[data-test="sorting_completed"]')
+    }
+
+    get productCards() {
+        return $$('a.card');
+    }
+
+    getLastProductCard() {
+        return this.productCards.then(cards => cards[cards.length - 1]);
     }
 
     async waitForTheLastProductToRender() {
-        await this.lastProductCard.waitForDisplayed()
-        await this.lastProductName.waitForDisplayed()
-        await this.lastProductPrice.waitForDisplayed()
+        await this.sortedGoods.waitForDisplayed();
+
+        const cards = await this.productCards;
+        await cards[cards.length - 1].waitForDisplayed();
     }
 }
