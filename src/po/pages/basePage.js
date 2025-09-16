@@ -8,4 +8,8 @@ export class BasePage {
     async open() {
         await browser.url(this.path)
     }
+
+    async getUrl() {
+        return await browser.getUrl()
+    }
 }

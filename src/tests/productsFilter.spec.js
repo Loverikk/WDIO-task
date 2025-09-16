@@ -3,11 +3,13 @@ import { PowerToolsPage } from "../po/pages/powerToolsPAge"
 import { PAGE_PATHS, TITLES, SORTING_OPTIONS } from "../data"
 
 describe('Tesing homepage', async () => {
-    const homePage = new HomePage(PAGE_PATHS.HOME)
-    const powerToolsPage = new PowerToolsPage(PAGE_PATHS.POWER_TOOLS)
+    let homePage
+    let powerToolsPage
 
     beforeEach(async () => {
         await browser.url('/')
+        homePage = new HomePage(PAGE_PATHS.HOME)
+        powerToolsPage = new PowerToolsPage(PAGE_PATHS.POWER_TOOLS)
     })
 
     it('Should filter goods in ascending order', async () => {
@@ -18,8 +20,8 @@ describe('Tesing homepage', async () => {
 
         const productsPriceArray = await homePage.productPriceArray
         const isSorted = await homePage.filterPrice(productsPriceArray)
-        await expect(selectedValue).toBe(SORTING_OPTIONS.ASCENDING_ORDER)
-        await expect(isSorted).toBeTruthy()
+        expect(selectedValue).to.equal(SORTING_OPTIONS.ASCENDING_ORDER)
+        expect(isSorted).to.be.true
     })
 
     it('Should display products under "Power tools" category', async () => {
@@ -28,6 +30,6 @@ describe('Tesing homepage', async () => {
         await homePage.navigation.powerToolsCategory.click()
         await powerToolsPage.pageTitle.waitForDisplayed()
         const pageTitle = await powerToolsPage.pageTitleText
-        await expect(pageTitle).toBe(TITLES.POWER_TOOLS)
+        expect(pageTitle).to.equal(TITLES.POWER_TOOLS)
     })
 })

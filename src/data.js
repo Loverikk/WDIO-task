@@ -24,7 +24,8 @@ export const TYPES = {
 }
 
 export const TITLES = {
-    POWER_TOOLS: 'Category: Power Tools'
+    POWER_TOOLS: 'Category: Power Tools',
+    MY_ACCOUNT: 'My account'
 }
 
 export const SORTING_OPTIONS = {

@@ -206,6 +206,12 @@ exports.config = {
      */
     before: async function (capabilities, specs) {
         await browser.maximizeWindow();
+
+        const chai = require('chai');
+        global.chai = chai;
+        global.expect = chai.expect;
+        global.assert = chai.assert;
+        chai.should(); // initializes "should" globally
     },
     /**
      * Runs before a WebdriverIO command gets executed.
