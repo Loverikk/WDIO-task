@@ -31,3 +31,11 @@ export const TITLES = {
 export const SORTING_OPTIONS = {
     ASCENDING_ORDER: 'price,asc'
 }
+
+export const TOOLS_CATEGORIES = {
+    HAND_TOOLS: 'Hand tools',
+    POWER_TOOLS: 'Power tools',
+    OTHER: 'Other',
+    SPECIAL_TOOLS: 'Special tools',
+    RENTALS: 'Rentals'
+}

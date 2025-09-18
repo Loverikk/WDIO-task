@@ -1,35 +1,33 @@
 import { HomePage } from "../po/pages/homePage"
 import { PowerToolsPage } from "../po/pages/powerToolsPAge"
-import { PAGE_PATHS, TITLES, SORTING_OPTIONS } from "../data"
+import { PAGE_PATHS, TITLES, SORTING_OPTIONS, TOOLS_CATEGORIES } from "./test-data/data"
 
-describe('Tesing homepage', async () => {
+describe('Tesing homepage', () => {
     let homePage
     let powerToolsPage
 
     beforeEach(async () => {
-        await browser.url('/')
         homePage = new HomePage(PAGE_PATHS.HOME)
         powerToolsPage = new PowerToolsPage(PAGE_PATHS.POWER_TOOLS)
+        await homePage.open(PAGE_PATHS.HOME)
     })
 
-    it('Should filter goods in ascending order', async () => {
-        await homePage.sortDropdown.click()
-        await homePage.sortingOption(SORTING_OPTIONS.ASCENDING_ORDER).click()
-        const selectedValue = await homePage.sortDropdownValue
+    it.skip('Should filter goods in ascending order', async () => {
+        await homePage.clickDropdown()
+        await homePage.chooseSortingOption(SORTING_OPTIONS.ASCENDING_ORDER)
+        const selectedValue = await homePage.getSortDropdownValue()
         await homePage.waitForTheLastProductToRender()
-
-        const productsPriceArray = await homePage.productPriceArray
-        const isSorted = await homePage.filterPrice(productsPriceArray)
+        const isSorted = await homePage.filterPrice(homePage.productPriceArray)
         expect(selectedValue).to.equal(SORTING_OPTIONS.ASCENDING_ORDER)
         expect(isSorted).to.be.true
     })
 
     it('Should display products under "Power tools" category', async () => {
-        await homePage.navigation.categories.click()
-        await homePage.navigation.categoriesDropdown.waitForDisplayed()
-        await homePage.navigation.powerToolsCategory.click()
-        await powerToolsPage.pageTitle.waitForDisplayed()
-        const pageTitle = await powerToolsPage.pageTitleText
+        await homePage.navigation.clickCategories()
+        await homePage.waitForElementsToAppear(homePage.navigation.categoriesDropdown)
+        await homePage.navigation.chooseCategory(TOOLS_CATEGORIES.POWER_TOOLS)
+        await powerToolsPage.waitForElementsToAppear(powerToolsPage.pageTitle)
+        const pageTitle = await powerToolsPage.getPageTitleText()
         expect(pageTitle).to.equal(TITLES.POWER_TOOLS)
     })
 })

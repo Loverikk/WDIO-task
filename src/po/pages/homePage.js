@@ -5,6 +5,11 @@ export class HomePage extends BasePage {
         super(path)
     }
 
+    get sortDropdown() { return $('[data-test="sort"]') }
+    get productPriceArray() { return $$('.col-md-9 a [data-test="product-price"]') }
+    get sortedGoods() { return $('div[data-test="sorting_completed"]') }
+    get productCards() { return $$('a.card') }
+
     async filterPrice(productsPriceArray) {
         let isSorted = true
 
@@ -24,38 +29,14 @@ export class HomePage extends BasePage {
         return isSorted
     }
 
-    get sortDropdown() {
-        return $('[data-test="sort"]')
-    }
-
-    get productPriceArray() {
-        return $$('.col-md-9 a [data-test="product-price"]')
-    }
-
-    sortingOption(value) {
-        return this.sortDropdown.$(`option[value="${value}"]`)
-    }
-
-    get sortDropdownValue() {
-        return this.sortDropdown.getValue()
-    }
-
-    get sortedGoods() {
-        return $('div[data-test="sorting_completed"]')
-    }
-
-    get productCards() {
-        return $$('a.card');
-    }
-
-    getLastProductCard() {
-        return this.productCards.then(cards => cards[cards.length - 1]);
-    }
+    sortingOption(value) { return this.sortDropdown.$(`option[value="${value}"]`) }
+    async clickDropdown() { await this.sortDropdown.click() }
+    async chooseSortingOption(option) { await this.sortingOption(option).click() }
+    async getSortDropdownValue() { return await this.sortDropdown.getValue() }
+    getLastProductCard() { return this.productCards.then(cards => cards[cards.length - 1]) }
 
     async waitForTheLastProductToRender() {
-        await this.sortedGoods.waitForDisplayed();
-
         const cards = await this.productCards;
-        await cards[cards.length - 1].waitForDisplayed();
+        super.waitForElementsToAppear([this.sortedGoods, cards[cards.length - 1]])
     }
 }

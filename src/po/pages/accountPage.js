@@ -5,11 +5,6 @@ export class AccountPage extends BasePage {
         super(path)
     }
 
-    get pageTitle() {
-        return $('h1[data-test="page-title"]')
-    }
-
-    get pageTitleText() {
-        return this.pageTitle.getText()
-    }
+    get pageTitle() { return $('h1[data-test="page-title"]') }
+    get pageTitleText() { return this.pageTitle.getText() }
 }

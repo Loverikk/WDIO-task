@@ -12,4 +12,14 @@ export class BasePage {
     async getUrl() {
         return await browser.getUrl()
     }
+
+    async waitForElementsToAppear(...elementsArray) {
+        for (const element of elementsArray) {
+            await element.waitForDisplayed()
+        }
+    }
+
+    async getErrorText(element) {
+        return await element.getText()
+    }
 }

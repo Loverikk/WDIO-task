@@ -5,11 +5,6 @@ export class PowerToolsPage extends BasePage {
         super(path)
     }
 
-    get pageTitle() {
-        return $('[data-test="page-title"]')
-    }
-
-    get pageTitleText() {
-        return this.pageTitle.getText()
-    }
+    get pageTitle() { return $('[data-test="page-title"]') }
+    async getPageTitleText() { return await this.pageTitle.getText() }
 }
