@@ -29,14 +29,28 @@ export class HomePage extends BasePage {
         return isSorted
     }
 
-    sortingOption(value) { return this.sortDropdown.$(`option[value="${value}"]`) }
-    async clickDropdown() { await this.sortDropdown.click() }
-    async chooseSortingOption(option) { await this.sortingOption(option).click() }
-    async getSortDropdownValue() { return await this.sortDropdown.getValue() }
-    getLastProductCard() { return this.productCards.then(cards => cards[cards.length - 1]) }
+    sortingOption(value) {
+        return this.sortDropdown.$(`option[value="${value}"]`)
+    }
+
+    async clickDropdown() {
+        await this.sortDropdown.click()
+    }
+
+    async chooseSortingOption(option) {
+        await this.sortingOption(option).click()
+    }
+
+    getSortDropdownValue() {
+        return this.sortDropdown.getValue()
+    }
+
+    getLastProductCard() {
+        return this.productCards.then(cards => cards[cards.length - 1])
+    }
 
     async waitForTheLastProductToRender() {
         const cards = await this.productCards;
-        super.waitForElementsToAppear([this.sortedGoods, cards[cards.length - 1]])
+        this.waitForElementsToAppear([this.sortedGoods, cards[cards.length - 1]])
     }
 }

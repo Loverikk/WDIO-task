@@ -9,8 +9,8 @@ export class BasePage {
         await browser.url(this.path)
     }
 
-    async getUrl() {
-        return await browser.getUrl()
+    getUrl() {
+        return browser.getUrl()
     }
 
     async waitForElementsToAppear(...elementsArray) {
@@ -19,7 +19,7 @@ export class BasePage {
         }
     }
 
-    async getErrorText(element) {
-        return await element.getText()
+    getElementText(element) {
+        return element.getText()
     }
 }

@@ -1,7 +1,7 @@
 import { ForgotPasswordPage } from "../po/pages/forgotPasswordPage"
 import { LoginPage } from "../po/pages/loginPage"
 import { AccountPage } from "../po/pages/accountPage"
-import { PAGE_PATHS, DUMMY_CREDENTIALS, ERROR_MESSAGES, TYPES, TITLES } from "./test-data/data"
+import { PAGE_PATHS, DUMMY_CREDENTIALS, ERROR_MESSAGES, TYPES, TITLES } from "../test-data/data"
 
 describe('Login page', () => {
     let loginPage;
@@ -18,8 +18,8 @@ describe('Login page', () => {
     it('Should show the error when login with empty fields', async () => {
         await loginPage.login()
         await loginPage.waitForElementsToAppear(loginPage.emailErrorBox, loginPage.passwordErrorBox)
-        const emailErrorText = await loginPage.getErrorText(loginPage.emailErrorBox)
-        const passwordErrorText = await loginPage.getErrorText(loginPage.passwordErrorBox)
+        const emailErrorText = await loginPage.getElementText(loginPage.emailErrorBox)
+        const passwordErrorText = await loginPage.getElementText(loginPage.passwordErrorBox)
         expect(emailErrorText).to.equal(ERROR_MESSAGES.EMAIL_REQUIRED)
         expect(passwordErrorText).to.equal(ERROR_MESSAGES.PASSWORD_REQUIRED)
     })
@@ -29,7 +29,7 @@ describe('Login page', () => {
         await loginPage.typeInPassword(process.env.CORRECT_PASSWORD)
         await loginPage.login()
         await loginPage.waitForElementsToAppear(loginPage.loginErrorBox)
-        const loginErrorText = await loginPage.getErrorText(loginPage.loginErrorBox)
+        const loginErrorText = await loginPage.getElementText(loginPage.loginErrorBox)
         loginErrorText.should.equal(ERROR_MESSAGES.INVALID_EMAIL_OR_PASSWORD)
     })
 
@@ -38,7 +38,7 @@ describe('Login page', () => {
         await loginPage.typeInPassword(DUMMY_CREDENTIALS.PASSWORD)
         await loginPage.login()
         await loginPage.waitForElementsToAppear(loginPage.loginErrorBox)
-        const errorText = await loginPage.getErrorText(loginPage.loginErrorBox)
+        const errorText = await loginPage.getElementText(loginPage.loginErrorBox)
         errorText.should.equal(ERROR_MESSAGES.INVALID_EMAIL_OR_PASSWORD)
     })
 
@@ -67,7 +67,7 @@ describe('Login page', () => {
         await forgotPasswordPage.waitForElementsToAppear(forgotPasswordPage.setNewPasswordBtn)
         await forgotPasswordPage.submitNewPassword()
         await forgotPasswordPage.waitForElementsToAppear(forgotPasswordPage.errorBox)
-        const errorText = await forgotPasswordPage.getErrorText(forgotPasswordPage.errorBox)
+        const errorText = await forgotPasswordPage.getElementText(forgotPasswordPage.errorBox)
         assert.strictEqual(errorText, ERROR_MESSAGES.EMAIL_REQUIRED)
     })
 })  

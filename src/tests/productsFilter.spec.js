@@ -1,8 +1,8 @@
 import { HomePage } from "../po/pages/homePage"
-import { PowerToolsPage } from "../po/pages/powerToolsPAge"
-import { PAGE_PATHS, TITLES, SORTING_OPTIONS, TOOLS_CATEGORIES } from "./test-data/data"
+import { PowerToolsPage } from "../po/pages/powerToolsPage"
+import { PAGE_PATHS, TITLES, SORTING_OPTIONS, TOOLS_CATEGORIES } from '../test-data/data'
 
-describe('Tesing homepage', () => {
+describe('Testing homepage', () => {
     let homePage
     let powerToolsPage
 
@@ -12,7 +12,7 @@ describe('Tesing homepage', () => {
         await homePage.open(PAGE_PATHS.HOME)
     })
 
-    it.skip('Should filter goods in ascending order', async () => {
+    it('Should filter goods in ascending order', async () => {
         await homePage.clickDropdown()
         await homePage.chooseSortingOption(SORTING_OPTIONS.ASCENDING_ORDER)
         const selectedValue = await homePage.getSortDropdownValue()
