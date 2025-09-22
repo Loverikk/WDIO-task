@@ -1,4 +1,5 @@
 import { Navigation } from '../components/navigation'
+import { browser } from '@wdio/globals'
 
 export class BasePage {
     constructor(path) {
