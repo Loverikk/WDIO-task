@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "wdio": "wdio run ./src/config/wdio.conf.js"
+    "wdio": "wdio run ./src/config/wdio.conf.js --spec ./src/tests/productsFilter.spec.js"
   },
   "keywords": [],
   "author": "",
