@@ -1,0 +1,6 @@
+package.json
+package-lock.json
+allure-report
+allure-results
+node_modules
+wdio.conf.js

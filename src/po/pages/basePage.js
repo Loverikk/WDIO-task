@@ -1,25 +1,25 @@
-import { Navigation } from '../components/navigation'
+import { Navigation } from '../components/navigation';
 
 export class BasePage {
-    constructor(path) {
-        this.path = path
-        this.navigation = new Navigation()
-    }
-    async open() {
-        await browser.url(this.path)
-    }
+  constructor(path) {
+    this.path = path;
+    this.navigation = new Navigation();
+  }
+  async open() {
+    await browser.url(this.path);
+  }
 
-    getUrl() {
-        return browser.getUrl()
-    }
+  getUrl() {
+    return browser.getUrl();
+  }
 
-    async waitForElementsToAppear(...elementsArray) {
-        for (const element of elementsArray) {
-            await element.waitForDisplayed()
-        }
+  async waitForElementsToAppear(...elementsArray) {
+    for (const element of elementsArray) {
+      await element.waitForDisplayed();
     }
+  }
 
-    getElementText(element) {
-        return element.getText()
-    }
+  getElementText(element) {
+    return element.getText();
+  }
 }

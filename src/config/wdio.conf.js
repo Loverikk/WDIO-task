@@ -113,7 +113,7 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    before: async function (capabilities, specs) {
+    before: async function () {
         await browser.maximizeWindow();
 
         const chai = require('chai');

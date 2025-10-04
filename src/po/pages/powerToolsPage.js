@@ -1,13 +1,15 @@
-import { BasePage } from './basePage'
+import { BasePage } from './basePage';
 
 export class PowerToolsPage extends BasePage {
-    constructor(path) {
-        super(path)
-    }
+  constructor(path) {
+    super(path);
+  }
 
-    get pageTitle() { return $('[data-test="page-title"]') }
+  get pageTitle() {
+    return $('[data-test="page-title"]');
+  }
 
-    getPageTitleText() {
-        return this.pageTitle.getText()
-    }
+  getPageTitleText() {
+    return this.pageTitle.getText();
+  }
 }
