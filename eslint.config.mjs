@@ -24,6 +24,9 @@ export default defineConfig([
         assert: 'readonly',
         browser: 'readonly',
         driver: 'readonly',
+        Given: "readonly",
+        When: "readonly",
+        Then: "readonly"
       },
       sourceType: 'module',
     },

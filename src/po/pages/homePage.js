@@ -49,16 +49,26 @@ export class HomePage extends BasePage {
     await this.sortingOption(option).click();
   }
 
-  getSortDropdownValue() {
+  async getSortDropdownValue() {
     return this.sortDropdown.getValue();
   }
 
-  getLastProductCard() {
+  async getLastProductCard() {
     return this.productCards.then((cards) => cards[cards.length - 1]);
   }
 
   async waitForTheLastProductToRender() {
-    const cards = await this.productCards;
-    this.waitForElementsToAppear([this.sortedGoods, cards[cards.length - 1]]);
+    const sortedGoodsElement = await this.sortedGoods;
+    await sortedGoodsElement.waitForDisplayed({ timeout: 10000 });
+
+    await browser.waitUntil(async () => {
+      const cards = await this.productCards;
+      const lastCard = cards[cards.length - 1];
+      return lastCard && await lastCard.isDisplayed();
+    }, {
+      timeout: 10000,
+      interval: 300,
+      timeoutMsg: 'Last product card did not appear in time',
+    });
   }
 }

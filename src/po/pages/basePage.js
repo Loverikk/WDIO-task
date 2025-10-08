@@ -22,4 +22,8 @@ export class BasePage {
   getElementText(element) {
     return element.getText();
   }
+
+  getInputValue(element) {
+    return element.getValue()
+  }
 }

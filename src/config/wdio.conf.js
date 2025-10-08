@@ -1,9 +1,10 @@
 const allure = require('allure-commandline')
+const path = require('path');
 
 exports.config = {
     runner: 'local',
     specs: [
-        '../tests/**/*.js'
+        '../tests/features/**/*.feature'
     ],
     exclude: [
         // 'path/to/excluded/files'
@@ -14,7 +15,7 @@ exports.config = {
         browserName: 'chrome',
         maxInstances: 2,
         'goog:chromeOptions': {
-            args: ['--headless', '--disable-gpu', '--window-size=1920,1080']
+            args: ['-headless', '--disable-gpu', '--window-size=1920,1080']
         }
     },
     {
@@ -39,7 +40,7 @@ exports.config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    framework: 'mocha',
+    framework: 'cucumber',
 
     reporters: [
         ['spec', {
@@ -55,10 +56,13 @@ exports.config = {
         }]
     ],
 
-    mochaOpts: {
-        ui: 'bdd',
+    cucumberOpts: {
+        require: [path.join(__dirname, '../tests/steps/**/*.js')],
+        failFast: false,
+        tagExpression: '(@smoke and @products) or (@smoke and @auth)',
+        format: ['pretty'],
+        retry: 2,
         timeout: 60000,
-        retries: 2
     },
 
     //

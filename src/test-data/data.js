@@ -5,6 +5,8 @@ export const PAGE_PATHS = {
   HOME: '/',
   POWER_TOOLS: 'category/power-tools',
   MY_ACCOUNT_FULL: 'https://practicesoftwaretesting.com/account',
+  MY_LOGIN_FULL: 'https://practicesoftwaretesting.com/auth/login',
+  PRODUCT_PAGE_FULL: 'https://practicesoftwaretesting.com'
 };
 
 export const DUMMY_CREDENTIALS = {

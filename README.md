@@ -1,7 +1,7 @@
 Test cases:
 Feature: Authorization
-Background:
-Given I am on the login page
+
+Background: Given I am on the login page
 
     Scenario: Log in with empty fields
         Given the email field is empty
@@ -43,8 +43,8 @@ Given I am on the login page
         Then I should see an error "Email is required"
 
 Feature: Categories on the product page
-Background:
-Given I am on the product page
+
+Background: Given I am on the product page
 
     Scenario: Filter products by "Power Tools" category
         When I click "Categories" dropdown
@@ -54,6 +54,6 @@ Given I am on the product page
 
     Scenario: Filter products by "Low-High" price category
         When I click "Sort by" dropdown
-        And I select "Price(Low-High)" from the list
-        Then I should see the product list sorted in increasing price order
-        And I should see "Price(Low-High)" displayed in the dropdown.
+        And I select the category
+        Then I should see the product list
+        And I should see the category displayed in the field
